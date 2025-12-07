@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>MiloWeeklyWallet</title>
+    
+    <!-- PWA Settings -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#F2F2F7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MiloWallet">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/fluency/512/wallet.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              ios: {
+                bg: '#F2F2F7',
+                card: '#FFFFFF',
+                blue: '#007AFF',
+                green: '#34C759',
+                red: '#FF3B30',
+                gray: '#8E8E93',
+                separator: '#C6C6C8',
+              }
+            },
+            keyframes: {
+              fadeInDown: {
+                '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              scaleIn: {
+                '0%': { opacity: '0', transform: 'scale(0.95)' },
+                '100%': { opacity: '1', transform: 'scale(1)' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(100%)' },
+                '100%': { transform: 'translateY(0)' },
+              },
+              pop: {
+                '0%': { transform: 'scale(1)' },
+                '50%': { transform: 'scale(1.05)' },
+                '100%': { transform: 'scale(1)' },
+              }
+            },
+            animation: {
+              'fade-in-down': 'fadeInDown 0.3s ease-out forwards',
+              'scale-in': 'scaleIn 0.2s ease-out forwards',
+              'slide-up': 'slideUp 0.3s ease-out forwards',
+              'pop': 'pop 0.2s ease-out forwards',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Smooth scrolling and iOS safe area tweaks */
+      html, body {
+        height: 100%;
+        overscroll-behavior-y: none;
+        -webkit-tap-highlight-color: transparent;
+        font-family: 'Inter', sans-serif;
+        background-color: #F2F2F7;
+        /* Hide Scrollbar Globally */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+      }
+      
+      /* Webkit (Chrome, Safari, etc) */
+      ::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+        background: transparent;
+        display: none;
+      }
+
+      #root {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .glass-dark {
+        background: rgba(30, 30, 30, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+      .safe-bottom {
+        padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "jspdf": "https://aistudiocdn.com/jspdf@^3.0.4",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+    "html2canvas": "https://aistudiocdn.com/html2canvas@^1.4.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="antialiased selection:bg-blue-100 selection:text-blue-900">
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(reg => {
+            console.log('Service Worker registered', reg);
+          }).catch(err => {
+            console.log('Service Worker registration failed', err);
+          });
+        });
+      }
+    </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

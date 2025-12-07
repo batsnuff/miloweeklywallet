@@ -1,0 +1,5 @@
+{
+  "name": "MiloWeeklyWallet",
+  "description": "A mobile-first weekly budget tracker with intelligent reporting and Sunday reset logic.",
+  "requestFramePermissions": []
+}

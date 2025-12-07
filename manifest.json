@@ -1,0 +1,16 @@
+{
+  "name": "MiloWeeklyWallet",
+  "short_name": "MiloWallet",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F2F2F7",
+  "theme_color": "#F2F2F7",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://img.icons8.com/fluency/512/wallet.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
